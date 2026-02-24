@@ -1,0 +1,41 @@
+{
+  "name": "rest-express",
+  "version": "1.0.0",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "dev:client": "vite",
+    "dev:api": "node --watch server/index.js",
+    "dev:all": "npm run dev:api",
+    "build": "vite build",
+    "preview": "vite preview",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "db:push": "prisma db push",
+    "db:seed": "node prisma/seed.js"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.16.2",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "drizzle-orm": "^0.44.5",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "lucide-react": "^0.575.0",
+    "pg": "^8.16.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^7.13.0",
+    "socket.io": "^4.8.1",
+    "wouter": "^3.9.0",
+    "zod": "^4.1.5"   
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.7.0",
+    "drizzle-kit": "^0.31.4",
+    "prisma": "^6.16.2",
+    "vite": "^7.3.0"
+  }
+}
