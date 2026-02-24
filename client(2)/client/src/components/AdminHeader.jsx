@@ -1,0 +1,11 @@
+import React from 'react';
+
+const AdminHeader = () => {
+  return (
+    <header className="admin-header">
+     
+    </header>
+  );
+};
+
+export default AdminHeader;

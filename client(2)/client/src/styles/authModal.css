@@ -1,0 +1,139 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.modal-content {
+  background-color: #05080a;
+  width: 100%;
+  max-width: 400px;
+  padding: 2.5rem;
+  border-radius: 1rem;
+  position: relative;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.3s;
+  z-index: 110;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close:hover {
+  color: var(--primary-color);
+}
+
+.modal-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.modal-title {
+  margin-bottom: 0 !important;
+  font-size: 1.5rem !important;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--primary-color);
+  opacity: 0.8;
+}
+
+.form-group input {
+  background-color: rgba(34, 197, 94, 0.05);
+  border: 1px solid rgba(34, 197, 94, 0.1);
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  color: white;
+  font-family: var(--font-quantico);
+  outline: none;
+  transition: all 0.3s;
+}
+
+.form-group input:focus {
+  border-color: var(--primary-color);
+  background-color: rgba(34, 197, 94, 0.1);
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.2);
+}
+
+.form-utils {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.text-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+
+.text-btn:hover {
+  color: var(--primary-color);
+}
+
+.text-btn.highlight {
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+.submit-btn {
+  background-color: var(--primary-color);
+  color: black;
+  border: none;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  font-family: var(--font-iceland);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 0 15px rgba(34, 197, 94, 0.4);
+}
+
+.submit-btn:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 25px rgba(34, 197, 94, 0.6);
+}
+
+.modal-footer {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
