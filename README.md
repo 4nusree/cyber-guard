@@ -8,11 +8,11 @@ Production-oriented FastAPI backend scaffold for the CyberLearn cybersecurity le
 - PostgreSQL + SQLAlchemy ORM
 - Alembic migration setup
 - Environment-based configuration using `.env`
-- JWT access token authentication with refresh-token cookie rotation
+- JWT access and refresh token authentication
 - Bcrypt password hashing
 - Role-aware authorization dependency
 - Protected user route example at `GET /api/v1/users/me`
-- Refresh token persistence with HttpOnly cookie-based rotation support
+- Refresh token persistence with revocation support
 - MFA-ready login flow placeholder (`mfa_required` response if enabled)
 
 ## Project Structure
@@ -90,21 +90,21 @@ requirements.txt
 
 ### Register
 - `POST /api/v1/auth/register`
-- Creates a learner account, returns an access token payload, and sets the refresh token in an HttpOnly cookie.
+- Creates a learner account and returns access + refresh tokens.
 
 ### Login
 - `POST /api/v1/auth/login`
 - Verifies email/password.
 - If `mfa_enabled` is `true`, returns `mfa_required: true` and no tokens.
-- Otherwise returns an access token payload and sets the refresh token in an HttpOnly cookie.
+- Otherwise returns access + refresh tokens.
 
 ### Refresh
 - `POST /api/v1/auth/refresh`
-- Reads the refresh token from the HttpOnly cookie, validates it, rotates it, and returns a new access token payload.
+- Validates and rotates the refresh token.
 
 ### Logout
 - `POST /api/v1/auth/logout`
-- Revokes the refresh token from the HttpOnly cookie and clears that cookie.
+- Revokes the submitted refresh token when provided.
 
 ### Current User
 - `GET /api/v1/auth/me`
@@ -113,5 +113,5 @@ requirements.txt
 ## Notes
 
 - MFA challenge/verification is intentionally not implemented yet.
-- Refresh tokens are intentionally kept out of frontend storage and are expected to move through the HttpOnly cookie only.
+- Refresh token cookie transport can be added later without changing the service boundaries.
 - For production, replace the example secrets, restrict CORS, and run behind HTTPS.

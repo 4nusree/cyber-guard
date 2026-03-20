@@ -15,10 +15,20 @@ class LoginRequest(BaseModel):
     password: str = Field(min_length=8, max_length=128)
 
 
+class RefreshRequest(BaseModel):
+    refresh_token: str
+
+
+class LogoutRequest(BaseModel):
+    refresh_token: str | None = None
+
+
 class TokenPair(BaseModel):
     access_token: str
+    refresh_token: str
     token_type: str = "bearer"
     access_token_expires_at: datetime
+    refresh_token_expires_at: datetime
 
 
 class AuthResponse(BaseModel):

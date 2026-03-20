@@ -25,18 +25,8 @@ class Settings(BaseSettings):
     jwt_algorithm: str = "HS256"
     access_token_expire_minutes: int = 15
     refresh_token_expire_days: int = 7
-    refresh_cookie_name: str = "cyberlearn_refresh_token"
-    refresh_cookie_secure: bool = False
-    refresh_cookie_samesite: str = "lax"
 
-    cors_origins: list[str] = [
-        "http://localhost:3000",
-        "http://localhost:5000",
-        "http://localhost:5173",
-        "http://127.0.0.1:3000",
-        "http://127.0.0.1:5000",
-        "http://127.0.0.1:5173",
-    ]
+    cors_origins: list[str] = ["http://localhost:3000", "http://localhost:5000"]
 
 
 @lru_cache
