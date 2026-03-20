@@ -4,12 +4,13 @@ import AdminHeader from '../components/AdminHeader';
 import AdminStatsCard from '../components/AdminStatsCard';
 import AdminTable from '../components/AdminTable';
 import '../styles/admin.css';
+import { useAuth } from '../context/AuthContext';
 
 const Admin = () => {
   const [activeSection, setActiveSection] = useState("dashboard");
-  const userRole = "admin"; // Simulated role check
+  const { roles } = useAuth();
 
-  if (userRole !== "admin") {
+  if (!roles.includes('admin')) {
     return <div className="access-denied">Access Restricted</div>;
   }
 

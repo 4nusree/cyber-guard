@@ -29,6 +29,16 @@
   border-left: 4px solid var(--primary-color, #22c55e);
 }
 
+.toast-success {
+  border-left: 4px solid #22c55e;
+  border-color: rgba(34, 197, 94, 0.3);
+}
+
+.toast-warning {
+  border-left: 4px solid #f59e0b;
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
 .toast-critical {
   border-left: 4px solid #ff4444;
   border-color: rgba(255, 68, 68, 0.3);
@@ -42,6 +52,14 @@
 
 .toast-icon {
   color: var(--primary-color, #22c55e);
+}
+
+.toast-success .toast-icon {
+  color: #22c55e;
+}
+
+.toast-warning .toast-icon {
+  color: #f59e0b;
 }
 
 .toast-critical .toast-icon {

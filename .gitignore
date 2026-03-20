@@ -1,9 +1,8 @@
-node_modules/
-client/dist/
-dist/
-package-lock.json
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
 .env
-.env.*
-!.env.example
-.prisma/
-codebase.md
+
+node_modules/
+dist/
