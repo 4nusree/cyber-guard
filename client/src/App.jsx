@@ -14,12 +14,15 @@ import Navbar from "./components/Navbar";
 import AuthModal from "./components/AuthModal";
 import PopupModal from "./components/PopupModal";
 import { ToastProvider } from "./components/ui/Toast";
+import { AuthProvider } from "./context/AuthContext";
+import { ProtectedRoute, RoleProtectedRoute } from "./components/ProtectedRoute";
 
-function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+function AppShell() {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [activePopup, setActivePopup] = useState(null);
 
+  const openAuthModal = () => setIsAuthModalOpen(true);
+  const closeAuthModal = () => setIsAuthModalOpen(false);
   const closePopup = () => setActivePopup(null);
 
   const renderPopupContent = () => {
@@ -39,43 +42,75 @@ function App() {
   };
 
   return (
+    <div className="app-container">
+      <Navbar onOpenAuth={openAuthModal} />
+      <main>
+        <Switch>
+          <Route path="/" component={LandingPage} />
+          <Route path="/platform">
+            {() => (
+              <ProtectedRoute onRequireAuth={openAuthModal}>
+                <PlatformSelection />
+              </ProtectedRoute>
+            )}
+          </Route>
+          <Route path="/community">
+            {() => (
+              <ProtectedRoute onRequireAuth={openAuthModal}>
+                <Community />
+              </ProtectedRoute>
+            )}
+          </Route>
+          <Route path="/profile">
+            {() => (
+              <ProtectedRoute onRequireAuth={openAuthModal}>
+                <Profile />
+              </ProtectedRoute>
+            )}
+          </Route>
+          <Route path="/references" component={References} />
+          <Route path="/settings">
+            {() => (
+              <ProtectedRoute onRequireAuth={openAuthModal}>
+                <Settings />
+              </ProtectedRoute>
+            )}
+          </Route>
+          <Route path="/admin">
+            {() => (
+              <RoleProtectedRoute allowedRoles={["admin"]} onRequireAuth={openAuthModal}>
+                <Admin />
+              </RoleProtectedRoute>
+            )}
+          </Route>
+          <Route path="/about" component={AboutPage} />
+          <Route path="/terms" component={Terms} />
+          <Route path="/privacy" component={Privacy} />
+        </Switch>
+      </main>
+      <AuthModal
+        isOpen={isAuthModalOpen}
+        onClose={closeAuthModal}
+      />
+      <PopupModal
+        isOpen={!!activePopup}
+        onClose={closePopup}
+        title={getPopupTitle()}
+      >
+        {renderPopupContent()}
+      </PopupModal>
+    </div>
+  );
+}
+
+function App() {
+  return (
     <ToastProvider>
-      <div className="app-container">
-        <Navbar 
-          isAuthenticated={isAuthenticated}
-          setIsAuthenticated={setIsAuthenticated}
-          onOpenAuth={() => setIsAuthModalOpen(true)} 
-          onOpenPopup={(type) => setActivePopup(type)}
-        />
-        <main>
-          <Switch>
-            <Route path="/" component={LandingPage} />
-            <Route path="/platform" component={PlatformSelection} />
-            <Route path="/community" component={Community} />
-            <Route path="/profile" component={Profile} />
-            <Route path="/references" component={References} />
-            <Route path="/settings" component={Settings} />
-            <Route path="/admin" component={Admin} />
-            <Route path="/about" component={AboutPage} />
-            <Route path="/terms" component={Terms} />
-            <Route path="/privacy" component={Privacy} />
-          </Switch>
-        </main>
-        <AuthModal 
-          isOpen={isAuthModalOpen} 
-          onClose={() => setIsAuthModalOpen(false)} 
-        />
-        <PopupModal
-          isOpen={!!activePopup}
-          onClose={closePopup}
-          title={getPopupTitle()}
-        >
-          {renderPopupContent()}
-        </PopupModal>
-      </div>
+      <AuthProvider>
+        <AppShell />
+      </AuthProvider>
     </ToastProvider>
   );
 }
 
 export default App;
-

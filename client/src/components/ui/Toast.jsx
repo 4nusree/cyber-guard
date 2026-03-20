@@ -40,6 +40,13 @@ export const useToast = () => {
   return context;
 };
 
+const toastIconByType = {
+  critical: 'report',
+  success: 'check_circle',
+  warning: 'warning',
+  info: 'notifications',
+};
+
 const Toast = ({ message, type, onClose }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -52,7 +59,7 @@ const Toast = ({ message, type, onClose }) => {
     <div className={`toast toast-${type} neon-border`}>
       <div className="toast-content">
         <span className="material-symbols-outlined toast-icon">
-          {type === 'critical' ? 'report' : 'notifications'}
+          {toastIconByType[type] || toastIconByType.info}
         </span>
         <span className="toast-message">{message}</span>
       </div>

@@ -13,7 +13,7 @@ const AdminSidebar = ({ activeSection, setActiveSection }) => {
       <nav className="sidebar-nav">
         <div 
           className={`nav-item ${activeSection === 'dashboard' ? 'active' : ''}`}
-          onClick={() => setActiveSection("dashboard")}
+          onClick={() => setActiveSection?.("dashboard")}
         >
           <span className="material-symbols-outlined">dashboard</span>
           <span>OVERVIEW</span>
@@ -24,28 +24,28 @@ const AdminSidebar = ({ activeSection, setActiveSection }) => {
         </div>
         <div 
           className={`nav-item ${activeSection === 'users' ? 'active' : ''}`}
-          onClick={() => setActiveSection("users")}
+          onClick={() => setActiveSection?.("users")}
         >
           <span className="material-symbols-outlined">groups</span>
           <span>OPERATIVES</span>
         </div>
         <div 
           className={`nav-item ${activeSection === 'courses' ? 'active' : ''}`}
-          onClick={() => setActiveSection("courses")}
+          onClick={() => setActiveSection?.("courses")}
         >
           <span className="material-symbols-outlined">terminal</span>
           <span>MODULES</span>
         </div>
         <div 
           className={`nav-item ${activeSection === 'reports' ? 'active' : ''}`}
-          onClick={() => setActiveSection("reports")}
+          onClick={() => setActiveSection?.("reports")}
         >
           <span className="material-symbols-outlined">report</span>
           <span>INCIDENTS</span>
         </div>
         <div 
           className={`nav-item ${activeSection === 'settings' ? 'active' : ''}`}
-          onClick={() => setActiveSection("settings")}
+          onClick={() => setActiveSection?.("settings")}
         >
           <span className="material-symbols-outlined">settings</span>
           <span>CONFIG</span>
